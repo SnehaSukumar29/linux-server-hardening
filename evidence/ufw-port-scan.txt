@@ -1,0 +1,14 @@
+External connectivity test performed from Windows host after enabling UFW
+(Control 3), using PowerShell Test-NetConnection:
+
+Port 22 (SSH):  TcpTestSucceeded = True  (allowed by UFW, service listening)
+Port 80 (HTTP): TcpTestSucceeded = False (allowed by UFW, but no web
+                service is installed/listening on this VM)
+Port 3306 (MySQL): TcpTestSucceeded = False (not allowed by UFW; no
+                service listening either)
+
+Note: This test confirms the server's actual exposed surface from an
+external perspective. It does not, on its own, isolate UFW's blocking
+behavior from the simple absence of a listening service on ports 80/3306.
+The authoritative evidence for UFW's ruleset is `after-ufw-status.txt`,
+which shows the active default-deny policy and explicit allow rules.
