@@ -1,0 +1,8 @@
+Attempted SSH login as root after applying Control 1 (Disable root SSH login):
+
+$ ssh root@192.168.131.129
+root@192.168.131.129's password:
+Permission denied, please try again.
+
+Result: Root SSH login successfully blocked. PermitRootLogin set to "no"
+in /etc/ssh/sshd_config, confirmed via direct login attempt.
