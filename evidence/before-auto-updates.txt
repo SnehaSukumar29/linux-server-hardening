@@ -1,0 +1,9 @@
+Before Control 6 (Automatic Security Updates) hardening:
+
+- apt-daily.timer and apt-daily-upgrade.timer: both enabled and active
+- Unattended-Upgrade::Allowed-Origins already includes security repos
+  (this is Ubuntu's default configuration)
+- Automatic-Reboot: NOT configured - if a security update requires a
+  reboot (e.g. kernel patch), the system will not automatically restart,
+  potentially leaving known vulnerabilities unpatched at the running
+  kernel level indefinitely.

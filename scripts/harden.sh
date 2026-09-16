@@ -43,3 +43,18 @@ echo "Unnecessary services disabled."
 # Note: open-vm-tools and vgauth are intentionally left running - these are
 # VMware guest integration services specific to this lab environment and
 # would not exist on a real bare-metal or cloud production server.
+
+# --- Control 5: Enforce password policy via PAM ---
+echo "[5/9] Enforcing password policy..."
+sudo apt install -y libpam-pwquality
+grep -q '^minlen = 12' /etc/security/pwquality.conf || echo -e "minlen = 12\nminclass = 3\nmaxrepeat = 3\nreject_username" | sudo tee -a /etc/security/pwquality.conf > /dev/null
+sudo sed -i 's/^PASS_MAX_DAYS.*/PASS_MAX_DAYS   90/' /etc/login.defs
+sudo sed -i 's/^PASS_MIN_DAYS.*/PASS_MIN_DAYS   1/' /etc/login.defs
+echo "Password policy enforced: min 12 chars, complexity required, 90-day expiry."
+
+# --- Control 6: Enable automatic security updates ---
+echo "[6/9] Configuring automatic security updates..."
+sudo systemctl enable --now apt-daily.timer apt-daily-upgrade.timer
+grep -q 'Automatic-Reboot "true";' /etc/apt/apt.conf.d/50unattended-upgrades || echo 'Unattended-Upgrade::Automatic-Reboot "true";' | sudo tee -a /etc/apt/apt.conf.d/50unattended-upgrades > /dev/null
+grep -q 'Automatic-Reboot-Time "03:00";' /etc/apt/apt.conf.d/50unattended-upgrades || echo 'Unattended-Upgrade::Automatic-Reboot-Time "03:00";' | sudo tee -a /etc/apt/apt.conf.d/50unattended-upgrades > /dev/null
+echo "Automatic security updates configured with scheduled reboot at 03:00."

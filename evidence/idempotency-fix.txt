@@ -1,0 +1,16 @@
+Idempotency Issue Found and Fixed (Controls 5 & 6):
+
+During testing, running harden.sh multiple times (as would happen in
+normal operational use - e.g. re-running after a config drift check)
+revealed that Control 5 (password policy) and Control 6 (auto-update
+reboot settings) used unconditional `sed -i ... a` and `tee -a` commands,
+which appended duplicate configuration lines on each re-run.
+
+Fix: Both controls were rewritten to use `grep -q <setting> || <add>`
+guards, checking whether each setting already exists before adding it.
+This makes harden.sh safe to re-run any number of times without side
+effects (idempotent), which is standard practice for production
+hardening/configuration scripts.
+
+Verified via: running harden.sh twice in succession and confirming
+`grep -c` counts remained at 1 for both affected settings.
