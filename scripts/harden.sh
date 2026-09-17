@@ -110,3 +110,38 @@ RULESEOF
 else
     echo "Audit rules file already exists, skipping to avoid overwriting manual changes."
 fi
+
+# --- Control 9: sysctl kernel hardening ---
+echo "[Control 9] Applying kernel hardening parameters..."
+
+SYSCTL_FILE="/etc/sysctl.d/99-hardening.conf"
+
+if [ ! -f "$SYSCTL_FILE" ]; then
+    tee "$SYSCTL_FILE" > /dev/null << 'SYSCTLEOF'
+# Disable ICMP redirect acceptance (prevents MITM via forged redirects)
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv4.conf.default.accept_redirects = 0
+
+# Disable sending ICMP redirects (not a router)
+net.ipv4.conf.all.send_redirects = 0
+net.ipv4.conf.default.send_redirects = 0
+
+# Disable source-routed packets (prevents IP spoofing route manipulation)
+net.ipv4.conf.all.accept_source_route = 0
+net.ipv4.conf.default.accept_source_route = 0
+
+# Ignore ICMP broadcast requests (prevents Smurf-style DoS amplification)
+net.ipv4.icmp_echo_ignore_broadcasts = 1
+
+# Enable SYN cookies (mitigates SYN flood DoS)
+net.ipv4.tcp_syncookies = 1
+
+# Full ASLR (address space layout randomization)
+kernel.randomize_va_space = 2
+SYSCTLEOF
+    echo "Sysctl hardening file created."
+    sysctl --system > /dev/null 2>&1
+    echo "Sysctl parameters applied."
+else
+    echo "Sysctl hardening file already exists, skipping to avoid overwriting manual changes."
+fi

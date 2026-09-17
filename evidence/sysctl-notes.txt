@@ -1,0 +1,23 @@
+Control 9 (sysctl) - Baseline Observations
+=============================================
+
+Before applying hardening.conf, checked current kernel values against
+CIS-recommended settings. Ubuntu 24.04/26.04 ships with most of these
+already hardened by default:
+
+  net.ipv4.conf.all.accept_redirects       = 0  (already compliant)
+  net.ipv4.conf.all.accept_source_route    = 0  (already compliant)
+  net.ipv4.icmp_echo_ignore_broadcasts     = 1  (already compliant)
+  net.ipv4.tcp_syncookies                  = 1  (already compliant)
+  kernel.randomize_va_space                = 2  (already compliant)
+
+One gap found:
+  net.ipv4.conf.all.send_redirects         = 1  -> hardened to 0
+
+All six values were still explicitly set via /etc/sysctl.d/99-hardening.conf
+rather than relying on Ubuntu's current defaults - this documents the
+intended secure baseline explicitly and protects against a future OS
+version changing its defaults silently.
+
+Verified via live `sysctl` read (not just config file contents) that all
+values took effect immediately without requiring a reboot.
