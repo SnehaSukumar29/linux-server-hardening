@@ -58,3 +58,29 @@ sudo systemctl enable --now apt-daily.timer apt-daily-upgrade.timer
 grep -q 'Automatic-Reboot "true";' /etc/apt/apt.conf.d/50unattended-upgrades || echo 'Unattended-Upgrade::Automatic-Reboot "true";' | sudo tee -a /etc/apt/apt.conf.d/50unattended-upgrades > /dev/null
 grep -q 'Automatic-Reboot-Time "03:00";' /etc/apt/apt.conf.d/50unattended-upgrades || echo 'Unattended-Upgrade::Automatic-Reboot-Time "03:00";' | sudo tee -a /etc/apt/apt.conf.d/50unattended-upgrades > /dev/null
 echo "Automatic security updates configured with scheduled reboot at 03:00."
+
+# --- Control 7: fail2ban (SSH brute-force protection) ---
+echo "[Control 7] Installing and configuring fail2ban..."
+
+if ! dpkg -s fail2ban &> /dev/null; then
+    apt install -y fail2ban
+else
+    echo "fail2ban already installed, skipping."
+fi
+
+
+if [ ! -f /etc/fail2ban/jail.local ]; then
+    tee /etc/fail2ban/jail.local > /dev/null << 'JAILEOF'
+[sshd]
+enabled = true
+port = 22
+filter = sshd
+backend = systemd
+maxretry = 4
+findtime = 300
+bantime = 1800
+JAILEOF
+    echo "jail.local created."
+else
+    echo "jail.local already exists, skipping to avoid overwriting manual changes."
+fi
