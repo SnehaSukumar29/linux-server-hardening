@@ -1,0 +1,27 @@
+----
+time->Thu Sep 17 21:02:06 2026
+type=PROCTITLE msg=audit(1789678926.886:206): proctitle=2F7362696E2F617564697463746C002D52002F6574632F61756469742F61756469742E72756C6573
+type=SYSCALL msg=audit(1789678926.886:206): arch=c000003e syscall=44 success=yes exit=1076 a0=3 a1=7ffd30a8ffe0 a2=434 a3=0 items=0 ppid=4230 pid=4249 auid=1000 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts1 ses=3 comm="auditctl" exe="/usr/sbin/auditctl" subj=unconfined key=(null)
+type=CONFIG_CHANGE msg=audit(1789678926.886:206): auid=1000 ses=3 subj=unconfined op=add_rule key="identity" list=4 res=1
+----
+time->Thu Sep 17 21:02:06 2026
+type=PROCTITLE msg=audit(1789678926.886:207): proctitle=2F7362696E2F617564697463746C002D52002F6574632F61756469742F61756469742E72756C6573
+type=PATH msg=audit(1789678926.886:207): item=0 name="/etc/" inode=917505 dev=08:02 mode=040755 ouid=0 ogid=0 rdev=00:00 nametype=PARENT cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=CWD msg=audit(1789678926.886:207): cwd="/home/snehaadmin/linux-server-hardening"
+type=SOCKADDR msg=audit(1789678926.886:207): saddr=100000000000000000000000
+type=SYSCALL msg=audit(1789678926.886:207): arch=c000003e syscall=44 success=yes exit=1076 a0=3 a1=7ffd30a8ffe0 a2=434 a3=0 items=1 ppid=4230 pid=4249 auid=1000 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts1 ses=3 comm="auditctl" exe="/usr/sbin/auditctl" subj=unconfined key=(null)
+type=CONFIG_CHANGE msg=audit(1789678926.886:207): auid=1000 ses=3 subj=unconfined op=add_rule key="identity" list=4 res=1
+----
+time->Thu Sep 17 21:02:06 2026
+type=PROCTITLE msg=audit(1789678926.886:208): proctitle=2F7362696E2F617564697463746C002D52002F6574632F61756469742F61756469742E72756C6573
+type=PATH msg=audit(1789678926.886:208): item=0 name="/etc/" inode=917505 dev=08:02 mode=040755 ouid=0 ogid=0 rdev=00:00 nametype=PARENT cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=CWD msg=audit(1789678926.886:208): cwd="/home/snehaadmin/linux-server-hardening"
+type=SOCKADDR msg=audit(1789678926.886:208): saddr=100000000000000000000000
+type=SYSCALL msg=audit(1789678926.886:208): arch=c000003e syscall=44 success=yes exit=1076 a0=3 a1=7ffd30a8ffe0 a2=434 a3=0 items=1 ppid=4230 pid=4249 auid=1000 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts1 ses=3 comm="auditctl" exe="/usr/sbin/auditctl" subj=unconfined key=(null)
+type=CONFIG_CHANGE msg=audit(1789678926.886:208): auid=1000 ses=3 subj=unconfined op=add_rule key="identity" list=4 res=1
+----
+time->Thu Sep 17 21:08:52 2026
+type=PROCTITLE msg=audit(1789679332.387:739): proctitle=746F756368002F6574632F706173737764
+type=PATH msg=audit(1789679332.387:739): item=0 name="/etc/passwd" inode=919213 dev=08:02 mode=0100644 ouid=0 ogid=0 rdev=00:00 nametype=NORMAL cap_fp=0 cap_fi=0 cap_fe=0 cap_fver=0 cap_frootid=0
+type=CWD msg=audit(1789679332.387:739): cwd="/home/snehaadmin/linux-server-hardening"
+type=SYSCALL msg=audit(1789679332.387:739): arch=c000003e syscall=257 success=yes exit=3 a0=ffffffffffffff9c a1=7ffc7b9c08d0 a2=80801 a3=0 items=1 ppid=5884 pid=5885 auid=1000 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=pts1 ses=3 comm="touch" exe="/usr/lib/cargo/bin/coreutils/touch" subj=unconfined key="identity"

@@ -84,3 +84,29 @@ JAILEOF
 else
     echo "jail.local already exists, skipping to avoid overwriting manual changes."
 fi
+
+# --- Control 8: auditd (system auditing) ---
+echo "[Control 8] Installing and configuring auditd..."
+
+if ! dpkg -s auditd &> /dev/null; then
+    apt install -y auditd audispd-plugins
+else
+    echo "auditd already installed, skipping."
+fi
+
+AUDIT_RULES_FILE="/etc/audit/rules.d/hardening.rules"
+
+if [ ! -f "$AUDIT_RULES_FILE" ]; then
+    tee "$AUDIT_RULES_FILE" > /dev/null << 'RULESEOF'
+# Watch for changes to user/group and authentication files
+-w /etc/passwd -p wa -k identity
+-w /etc/shadow -p wa -k identity
+-w /etc/group -p wa -k identity
+-w /etc/sudoers -p wa -k scope
+-w /etc/sudoers.d/ -p wa -k scope
+RULESEOF
+    echo "Audit rules created."
+    augenrules --load
+else
+    echo "Audit rules file already exists, skipping to avoid overwriting manual changes."
+fi
