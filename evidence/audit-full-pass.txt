@@ -1,0 +1,18 @@
+=== Server Hardening Audit ===
+Host: web01-prod
+Date: Mon Sep 21 07:58:04 PM UTC 2026
+
+[PASS] Control 1: Root SSH login is disabled
+[PASS] Control 2: SSH password authentication is disabled
+[PASS] Control 3: UFW is active with default-deny incoming policy
+[PASS] Control 4: Unnecessary services are disabled
+[PASS] Control 5: Password policy (minlen=12) is configured
+[PASS] Control 6: Automatic security updates are enabled
+[PASS] Control 7: fail2ban sshd jail is active
+[PASS] Control 8: auditd identity/scope watch rules are loaded
+[PASS] Control 9: Kernel hardening sysctl parameters are correctly set
+
+=== Audit Summary ===
+Passed: 9 / 9
+Failed: 0 / 9
+Overall: ALL CONTROLS PASS
