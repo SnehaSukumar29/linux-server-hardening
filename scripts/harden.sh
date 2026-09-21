@@ -60,7 +60,7 @@ grep -q 'Automatic-Reboot-Time "03:00";' /etc/apt/apt.conf.d/50unattended-upgrad
 echo "Automatic security updates configured with scheduled reboot at 03:00."
 
 # --- Control 7: fail2ban (SSH brute-force protection) ---
-echo "[Control 7] Installing and configuring fail2ban..."
+echo "[7/9] Installing and configuring fail2ban..."
 
 if ! dpkg -s fail2ban &> /dev/null; then
     apt install -y fail2ban
@@ -86,7 +86,7 @@ else
 fi
 
 # --- Control 8: auditd (system auditing) ---
-echo "[Control 8] Installing and configuring auditd..."
+echo "[8/9] Installing and configuring auditd..."
 
 if ! dpkg -s auditd &> /dev/null; then
     apt install -y auditd audispd-plugins
@@ -112,7 +112,7 @@ else
 fi
 
 # --- Control 9: sysctl kernel hardening ---
-echo "[Control 9] Applying kernel hardening parameters..."
+echo "[9/9] Applying kernel hardening parameters..."
 
 SYSCTL_FILE="/etc/sysctl.d/99-hardening.conf"
 
