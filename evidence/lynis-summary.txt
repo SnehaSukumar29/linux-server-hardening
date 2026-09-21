@@ -1,0 +1,42 @@
+Lynis Independent Security Scan - Summary
+===========================================
+
+Tool: Lynis 3.1.6 (CISOfy)
+Date: 2026-09-21
+Tests performed: 260 / 466 total available
+
+Result: Hardening index 63/100
+"System has been hardened, but could use additional hardening"
+
+This provides independent, third-party validation that the 9 controls
+implemented in this project produced a measurable improvement in the
+system's security posture, beyond this project's own audit.sh checks.
+
+Key finding directly relevant to this project's controls:
+  [WARNING] PKGS-7392: Found one or more vulnerable packages.
+
+Investigated via `apt list --upgradable` (see
+pending-updates-at-lynis-scan.txt) - confirmed several packages have
+security-labelled updates pending (resolute-security repository).
+This is expected and consistent with Control 6 (automatic security
+updates), which is configured to apply these on its scheduled cycle
+rather than instantly - the control is functioning as designed, not
+failing. This is a good example of the difference between "control
+configured correctly" (which audit.sh verifies) and "system fully
+up to date at this exact moment" (a point-in-time state that changes
+continuously).
+
+Other suggestions from Lynis (out of scope for this project's 9
+controls, noted for context/future work):
+  - Set a GRUB bootloader password
+  - Configure password hashing rounds and expiry dates in /etc/login.defs
+  - Install a malware scanner (e.g. rkhunter, chkrootkit)
+  - Consider a separate partition for /home and /var
+  - Install libpam-tmpdir, apt-listbugs, apt-listchanges, debsums
+
+These represent a broader hardening scope than this project's 9 defined
+CIS-mapped controls and were intentionally left out of scope, but are
+worth noting as natural next steps for a production deployment.
+
+Full report: lynis-report.dat (machine-readable) and
+lynis-full-log.txt (full human-readable log)

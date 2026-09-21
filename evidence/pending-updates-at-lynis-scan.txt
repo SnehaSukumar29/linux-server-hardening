@@ -1,0 +1,13 @@
+Listing...
+gir1.2-girepository-3.0/resolute-security 2.88.0-1ubuntu0.1 amd64 [upgradable from: 2.88.0-1]
+gir1.2-glib-2.0/resolute-security 2.88.0-1ubuntu0.1 amd64 [upgradable from: 2.88.0-1]
+libgirepository-2.0-0/resolute-security 2.88.0-1ubuntu0.1 amd64 [upgradable from: 2.88.0-1]
+libglib2.0-0t64/resolute-security 2.88.0-1ubuntu0.1 amd64 [upgradable from: 2.88.0-1]
+libglib2.0-bin/resolute-security 2.88.0-1ubuntu0.1 amd64 [upgradable from: 2.88.0-1]
+libglib2.0-data/resolute-security 2.88.0-1ubuntu0.1 all [upgradable from: 2.88.0-1]
+libnetplan1/resolute-updates 1.2-1ubuntu5.1 amd64 [upgradable from: 1.2-1ubuntu5]
+netplan-generator/resolute-updates 1.2-1ubuntu5.1 amd64 [upgradable from: 1.2-1ubuntu5]
+netplan.io/resolute-updates 1.2-1ubuntu5.1 amd64 [upgradable from: 1.2-1ubuntu5]
+python3-netplan/resolute-updates 1.2-1ubuntu5.1 amd64 [upgradable from: 1.2-1ubuntu5]
+rust-coreutils/resolute-updates 0.10.0-1ubuntu2~26.04.1 amd64 [upgradable from: 0.8.0-0ubuntu3]
+thermald/resolute-updates 2.5.11-0ubuntu1.1 amd64 [upgradable from: 2.5.11-0ubuntu1]
